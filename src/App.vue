@@ -20,22 +20,22 @@
       >
         <a
           href="/home"
-          class="font-mono body text-grey-darker no-underline hover:text-grey-darkest"
+          class="text-center font-mono body text-grey-lightest no-underline hover:text-orange-light"
           :style="{'font-size': '1.5625em'}"
         >home</a>
         <a
           href="/about"
-          class="font-mono body no-underline text-grey-darker hover:text-grey-darkest"
+          class="text-center font-mono body no-underline text-grey-lightest hover:text-orange-light"
           :style="{'font-size': '1.5625em'}"
         >about</a>
         <a
           href="/resume"
-          class="font-mono body no-underline text-grey-darker hover:text-grey-darkest"
+          class="text-center font-mono body no-underline text-grey-lightest hover:text-orange-light"
           :style="{'font-size': '1.5625em'}"
         >resume</a>
         <a
           href="/portfolio"
-          class="font-mono body no-underline text-grey-darker hover:text-grey-darkest"
+          class="text-center font-mono body no-underline text-grey-lightest hover:text-orange-light"
           :style="{'font-size': '1.5625em'}"
         >portfolio</a>
       </Push>
@@ -88,6 +88,14 @@ html {
 }
 
 .bm-menu {
-  background-color: #dae1e7;
+  /* background-color: #f1f5f8; */
+  background-color: #3D4852;
+}
+
+.bm-item-list>* {
+  padding-bottom: 0;
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 </style>

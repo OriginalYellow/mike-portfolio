@@ -4,7 +4,7 @@
     <div class="my-10 sm:mb-0 flex-1 z-20">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        class="fill-current text-grey-darkest w-24 h-24 mr-2"
+        class="fill-current text-orange-light w-24 h-24 mr-2"
         viewBox="0 0 24 24"
         @click.prevent.stop="$emit('openNav')"
       >
