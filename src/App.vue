@@ -1,54 +1,37 @@
 <template>
-  <div class="bg-grey-lightest">
-    <div
-      id="app"
-      class="flex flex-col mx-auto container"
+  <div id="app">
+    <AppBar
+      @openNav="toggleMenu"
+      :buttonIsActive="menuIsOpen"
+    />
+
+    <!-- MIKE: put this into its own file -->
+    <Push
+      width="300"
+      :crossIcon="false"
+      :burgerIcon="false"
+      :isOpen="menuIsOpen"
+      @closeMenu="closeMenu"
+      @openMenu="openMenu"
+      noOverlay
+      disableEsc
     >
-
-      <!-- MIKE: put a slot in this -->
-      <AppBar
-        @openNav="toggleMenu"
-        :buttonIsActive="menuIsOpen"
-      />
-
-      <!-- MIKE: put this into its own file -->
-      <Push
-        width="300"
-        :crossIcon="false"
-        :burgerIcon="false"
-        :isOpen="menuIsOpen"
-        @closeMenu="closeMenu"
-        @openMenu="openMenu"
-        noOverlay
-        disableEsc
+      <router-link
+        to="/"
       >
-        <a
-          href="/home"
-          class="text-center font-mono body text-grey-lightest no-underline hover:text-orange-light"
-          :style="{'font-size': '1.5625em'}"
-        >home</a>
-        <a
-          href="/about"
-          class="text-center font-mono body no-underline text-grey-lightest hover:text-orange-light"
-          :style="{'font-size': '1.5625em'}"
-        >about</a>
-        <a
-          href="/resume"
-          class="text-center font-mono body no-underline text-grey-lightest hover:text-orange-light"
-          :style="{'font-size': '1.5625em'}"
-        >resume</a>
-        <a
-          href="/portfolio"
-          class="text-center font-mono body no-underline text-grey-lightest hover:text-orange-light"
-          :style="{'font-size': '1.5625em'}"
-        >portfolio</a>
-      </Push>
+        <a :class="linkClass" :style="linkStyle">home</a>
+      </router-link>
+      <router-link
+        to="/portfolio"
+      >
+        <a :class="linkClass" :style="linkStyle">portfolio</a>
+      </router-link>
+    </Push>
 
-      <div id="page-wrap">
-        <TopSection />
-      </div>
-
+    <div id="page-wrap">
+      <router-view />
     </div>
+
   </div>
 </template>
 
@@ -56,12 +39,10 @@
 import { Push } from 'vue-burger-menu';
 
 import AppBar from './components/AppBar';
-import TopSection from './components/TopSection';
 
 export default {
   components: {
     AppBar,
-    TopSection,
     Push,
   },
 
@@ -84,6 +65,12 @@ export default {
       this.menuIsOpen = true;
     },
   },
+
+  computed: {
+    linkClass: () => 'text-center font-mono h6 text-grey-lightest no-underline hover:text-orange-light',
+
+    linkStyle: () => ({ 'font-weight': 'unset' }),
+  },
 };
 </script>
 
@@ -100,6 +87,7 @@ html {
 }
 
 .bm-item-list > * {
+  font-size: 10px;
   padding-bottom: 0;
   padding-top: 0;
   padding-left: 0;

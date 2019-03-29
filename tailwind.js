@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
 /*
 
 Tailwind - The Utility-First CSS Framework
@@ -221,7 +223,6 @@ module.exports = {
       'serif',
     ],
     mono: [
-      'IBM Plex Mono',
       'Menlo',
       'Monaco',
       'Consolas',
@@ -960,6 +961,9 @@ module.exports = {
       // padding: '1rem',
     }),
     require('tailwind-percentage-heights-plugin')(),
+    require('tailwindcss/plugins/container')({
+      center: true,
+    }),
   ],
 
 

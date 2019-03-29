@@ -40,9 +40,7 @@ export default {
     },
 
     legoStyle() {
-      // MIKE: you can safely just make this "1" if you make sure that the lego
-      // grid has its own stacking context
-      const zIndexOffset = 10;
+      const zIndexOffset = 1;
 
       const width = this.originalWidth * this.scalingFactor;
       const height = this.originalHeight * this.scalingFactor;
@@ -64,12 +62,11 @@ export default {
         left: this.column * width,
         'z-index': this.row * zIndexOffset,
         filter: colors[this.color],
-        // filter: `${colors[this.color]} saturate(40%) brightness(120%) opacity(100%)`,
       };
     },
 
     viewBox() {
-      return '0 0 60.203 50.64';
+      return `0 0 ${this.originalWidth} ${this.originalHeight}`;
     },
 
     originalWidth: () => 60.203,

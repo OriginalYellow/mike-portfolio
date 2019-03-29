@@ -1,7 +1,7 @@
 <template>
 
-  <nav class="font-mono body flex flex-row text-right z-1 sticky pin-t">
-    <div class="my-10 sm:mb-0 flex-1 z-20">
+  <nav class="font-mono flex flex-row text-right z-50 sticky pin-t bg-grey-light">
+    <div class="sm:mb-0 flex-1 container mx-auto">
 
       <button
         :class="buttonClass"

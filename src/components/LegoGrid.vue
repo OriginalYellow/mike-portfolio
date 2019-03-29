@@ -1,4 +1,7 @@
 <template>
+  <!-- MIKE: there is a small bug where if you go from sm to lg or xl too fast,
+  the initial call to anime.set won't target the new elements -->
+
   <!-- NOTE: for some reason "relative" doesn't seem to be doing anything but im
   keeping it here anyway just cuz -->
   <div
@@ -28,79 +31,7 @@
 import LegoBrick from './LegoBrick';
 
 export default {
-  data() {
-    return {
-      scalingFactor: 0.8,
-      legoBricks: [
-        [
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-        ],
-        [
-          {
-            color: 'light-blue',
-          },
-        ],
-        [
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-        ],
-        [
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-        ],
-        [
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-        ],
-        [
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-          {
-            color: 'light-blue',
-          },
-        ],
-      ],
-    };
-  },
+  props: ['legoBricks', 'scalingFactor'],
 
   components: {
     LegoBrick,
@@ -139,18 +70,40 @@ export default {
     originalBrickSideHeight: () => 25.2,
   },
 
-  mounted() {
-    this.$anime.set('.legoBrick', {
-      translateY: -350,
-    });
+  methods: {
+    animate() {
+      let resetZIndex = () => this.$anime.set('.legoBrick', {
+        zIndex: '-=51',
+      });
 
-    this.$anime({
-      targets: '.legoBrick',
-      translateY: 0,
-      // delay: this.$anime.stagger(100, { start: 500, from: 'center' }),
-      delay: this.$anime.stagger(100, { start: 500 }),
-      easing: 'easeOutQuart',
-    });
+      resetZIndex = resetZIndex.bind(this);
+
+      this.$anime.set('.legoBrick', {
+        translateY: -350,
+        zIndex: '+=51',
+      });
+
+      this.$anime({
+        targets: '.legoBrick',
+        translateY: 0,
+        delay: this.$anime.stagger(100, { start: 500 }),
+        easing: 'easeOutQuart',
+        complete() {
+          resetZIndex();
+        },
+      });
+    },
+
+    resetAnimation() {
+      this.$anime.set('.legoBrick', {
+        translateY: -350,
+        zIndex: '+=51',
+      });
+    },
+  },
+
+  updated() {
+    this.animate();
   },
 };
 </script>
