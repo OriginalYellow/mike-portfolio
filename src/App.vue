@@ -6,9 +6,12 @@
     >
 
       <!-- MIKE: put a slot in this -->
+      <AppBar
+        @openNav="toggleMenu"
+        :buttonIsActive="menuIsOpen"
+      />
 
-      <AppBar @openNav="toggleMenu" />
-
+      <!-- MIKE: put this into its own file -->
       <Push
         width="300"
         :crossIcon="false"
@@ -17,6 +20,7 @@
         @closeMenu="closeMenu"
         @openMenu="openMenu"
         noOverlay
+        disableEsc
       >
         <a
           href="/home"
@@ -55,7 +59,11 @@ import AppBar from './components/AppBar';
 import TopSection from './components/TopSection';
 
 export default {
-  components: { AppBar, TopSection, Push },
+  components: {
+    AppBar,
+    TopSection,
+    Push,
+  },
 
   data() {
     return {
@@ -65,7 +73,6 @@ export default {
 
   methods: {
     toggleMenu() {
-      console.log('fug');
       this.menuIsOpen = !this.menuIsOpen;
     },
 
@@ -89,10 +96,10 @@ html {
 
 .bm-menu {
   /* background-color: #f1f5f8; */
-  background-color: #3D4852;
+  background-color: #3d4852;
 }
 
-.bm-item-list>* {
+.bm-item-list > * {
   padding-bottom: 0;
   padding-top: 0;
   padding-left: 0;

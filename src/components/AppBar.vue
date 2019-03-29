@@ -1,50 +1,51 @@
 <template>
 
-  <nav class="font-mono body flex flex-row text-right z-10 sticky pin-t">
+  <nav class="font-mono body flex flex-row text-right z-1 sticky pin-t">
     <div class="my-10 sm:mb-0 flex-1 z-20">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="fill-current text-orange-light w-24 h-24 mr-2"
-        viewBox="0 0 24 24"
-        @click.prevent.stop="$emit('openNav')"
+
+      <button
+        :class="buttonClass"
+        type="button"
+        @click.prevent.stop="handleClick"
       >
-        <path
-          d="M0 0h24v24H0z"
-          fill="none"
-        />
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg>
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+
     </div>
   </nav>
 </template>
 
-  <!-- old: -->
-  <!-- <nav class="font-mono flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 bg-white shadow sm:items-baseline z-10 sticky pin-t"> -->
+<script>
+export default {
+  props: ['buttonIsActive'],
 
-      <!-- <Slide>
-        <a
-          id="home"
-          href="#"
-        >
-          <span>Home</span>
-        </a>
-      </Slide>
+  computed: {
+    buttonClass() {
+      return {
+        'hamburger--spin': true,
+        'focus:outline-none': true,
+        'fill-current': false,
+        'text-orange-light': true,
+        'w-24': true,
+        'h-24': true,
+        'mr-2': true,
+        'is-active': this.buttonIsActive,
+      };
+    },
+  },
 
-      <a
-        href="/home"
-        class="text-grey-darker no-underline hover:text-grey-darkest"
-      >Home</a>
+  methods: {
+    handleClick() {
+      this.$emit('openNav');
+    },
+  },
+};
+</script>
 
-    </div>
-    <div>
-      <a
-        href="/"
-        class="no-underline text-grey-darker hover:text-grey-darkest ml-4"
-      >About</a>
-      <a
-        href="/"
-        class="no-underline text-grey-darker hover:text-grey-darkest ml-4"
-      >Resume</a>
-      <a
-        href="/"
-        class="no-underline text-grey-darker hover:text-grey-darkest ml-4"
-      >Portfolio</a> -->
+<style>
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+  background-color: #FF9100
+}
+</style>
